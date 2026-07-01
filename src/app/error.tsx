@@ -1,0 +1,46 @@
+'use client'
+
+import { useEffect } from 'react'
+
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  useEffect(() => {
+    console.error('[GlobalError]', error)
+  }, [error])
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[var(--color-background)]">
+      <div className="max-w-md w-full mx-4 rounded-[var(--border-radius)] border border-[var(--color-destructive)]/30 bg-[var(--color-card)] p-8 text-center space-y-4 shadow-[var(--shadow-md)]">
+        <div className="w-12 h-12 rounded-full bg-[var(--color-destructive)]/10 flex items-center justify-center mx-auto">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-destructive)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        </div>
+        <h1 className="font-heading text-xl font-semibold text-[var(--color-foreground)]">
+          Something went wrong
+        </h1>
+        <p className="text-sm text-[var(--color-muted-foreground)]">
+          {error.message ?? 'An unexpected error occurred. Please try again.'}
+        </p>
+        {error.digest && (
+          <p className="text-xs font-mono text-[var(--color-muted-foreground)] opacity-60">
+            Ref: {error.digest}
+          </p>
+        )}
+        <button
+          onClick={reset}
+          className="inline-flex items-center justify-center h-10 px-5 rounded-[var(--border-radius)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)] text-sm font-medium transition-all hover:brightness-75"
+        >
+          Try again
+        </button>
+      </div>
+    </div>
+  )
+}

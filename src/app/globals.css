@@ -1,0 +1,268 @@
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── Tailwind v4 ──────────────────────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* ─── CSS Custom Properties (Theme) ───────────────────────────────────────── */
+:root {
+  /* ── Luxury Navy & Warm Gold palette ──────────────────────────────────── */
+  /* Primary = warm gold/bronze  (Pale Brown #B5915E, enriched)            */
+  /* Background = deep midnight navy  (Deep Blue #182350, darkened)        */
+  /* Accents = powder blue highlights (#AFD2FA)                            */
+  /* Foreground = floral white (#FEFAEF)                                   */
+
+  /* Colors */
+  --color-primary: #C4965A;
+  --color-primary-foreground: #0C1225;   /* deep navy on gold = 7.4:1 (WCAG AAA) */
+  --color-secondary: #1E2D5A;
+  --color-secondary-foreground: #AFD2FA;
+  --color-accent: #AFD2FA;
+  --color-accent-foreground: #182350;
+  --color-background: #0C1225;
+  --color-foreground: #FEFAEF;
+  --color-card: #182350;
+  --color-card-foreground: #FEFAEF;
+  --color-border: rgba(175, 210, 250, 0.15);
+  --color-muted: #1A2645;
+  --color-muted-foreground: #AFD2FA;
+  --color-destructive: #E05252;
+  --color-destructive-foreground: #FEFAEF;
+  --color-success: #3DAA6E;
+  --color-success-foreground: #FEFAEF;
+  --color-warning: #C4965A;
+  --color-warning-foreground: #FEFAEF;
+  --color-info: #AFD2FA;
+  --color-info-foreground: #182350;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-size-base: 16px;
+  --font-weight-heading: 600;
+  --line-height-base: 1.6;
+  --letter-spacing-heading: 0.04em;
+
+  /* Spacing & Shape */
+  --border-radius: 0.5rem;
+  --spacing-unit: 0.25rem;
+
+  /* Animations */
+  --animations-enabled: 1;
+  --animation-duration: 200ms;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.8);
+  --shadow-gold: 0 0 24px rgba(196, 150, 90, 0.2);
+
+  /* Overlays */
+  --color-overlay: rgba(12, 18, 37, 0.85);
+  --backdrop-blur: 12px;
+}
+
+/* ─── Tailwind Theme Extension ─────────────────────────────────────────────── */
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-destructive: var(--color-destructive);
+  --color-success: var(--color-success);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+  --radius: var(--border-radius);
+}
+
+/* ─── Base Styles ──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-size: var(--font-size-base);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: var(--line-height-base);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+}
+
+/* ─── Heading Styles ───────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: 1.2;
+  color: var(--color-foreground);
+}
+
+/* ─── Focus Visible ────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Selection ────────────────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(201, 168, 76, 0.3);
+  color: var(--color-foreground);
+}
+
+::-moz-selection {
+  background-color: rgba(201, 168, 76, 0.3);
+  color: var(--color-foreground);
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+  opacity: 0.6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  opacity: 1;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background);
+}
+
+/* ─── Links ────────────────────────────────────────────────────────────────── */
+/* :where() has zero specificity — any class-based text-color rule beats it.  */
+/* This prevents the global link color from overriding button text on <a>s.   */
+:where(a) {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--animation-duration) var(--animation-easing);
+}
+
+:where(a):hover {
+  color: var(--color-foreground);
+}
+
+/* ─── Code / Mono ──────────────────────────────────────────────────────────── */
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+}
+
+/* ─── Images ───────────────────────────────────────────────────────────────── */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── Reduced Motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animations-enabled: 0;
+    --animation-duration: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Utility Classes ──────────────────────────────────────────────────────── */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-gold {
+  color: var(--color-primary);
+}
+
+.bg-card {
+  background-color: var(--color-card);
+}
+
+.border-gold {
+  border-color: var(--color-primary);
+}
+
+/* Gold gradient text utility */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A84C 0%, #E8D08A 50%, #C9A84C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+/* Luxury divider */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.4;
+}
+
+/* ─── Page Transitions ─────────────────────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--animation-duration) var(--animation-easing),
+              transform var(--animation-duration) var(--animation-easing);
+}
